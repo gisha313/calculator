@@ -15,7 +15,7 @@ function div(a, b){
     return a / b;
 }
 
-function evaluate(expr){
+function evaluate(firstNumber, secondNumber, operator){
     const operations = {
         "+": add,
         "-": sub,
@@ -23,11 +23,5 @@ function evaluate(expr){
         "/": div,
     }
 
-    let a   = Number(expr.split(" ")[0]);
-    let op  = expr.split(" ")[1];
-    let b   = Number(expr.split(" ")[2]);
-
-    return operations[op](a, b);
+    return operations[operator](firstNumber, secondNumber);
 }
-
-console.log(evaluate("3 / 0"));

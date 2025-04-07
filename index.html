@@ -5,23 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
 </head>
 <body>
     <div class="wrapper">
         <div class="display-container">
-            <div><span id="display-current">7+9</span></div>
-            <div><span id="display-result">16</span></div>
+            <div><span id="display-current"></span></div>
+            <!-- <div><span id="display-result"></span></div> -->
         </div>
         <div class="buttons-container">
             <div class="numeric-container">
                 <div class="button-row">
-                    <div class="operator-btn" id="sign">
+                    <div class="special-btn" id="sign">
                         <button>+/-</button>
                     </div>
                     <div class="number-btn" id="0">
                         <button>0</button>
                     </div>
-                    <div class="operator-btn" id="comma">
+                    <div class="special-btn" id="comma">
                         <button>.</button>
                     </div>
                 </div>
@@ -59,13 +60,13 @@
                     </div>
                 </div>
                 <div class="button-row">
-                    <div class="operator-btn" id="clear">
+                    <div class="special-btn" id="clear">
                         <button>C</button>
                     </div>
-                    <div class="operator-btn" id="backspace">
+                    <div class="special-btn" id="backspace">
                         <button><=</button>
                     </div>
-                    <div class="operator-btn" id="percent">
+                    <div class="special-btn" id="percent">
                         <button>%</button>
                     </div>
                 </div>
@@ -83,7 +84,7 @@
                 <div class="operator-btn" id="/">
                     <button>/</button>
                 </div>
-                <div class="operator-btn" id="=">
+                <div class="special-btn" id="evaluate">
                     <button>=</button>
                 </div>
             </div>

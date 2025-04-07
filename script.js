@@ -93,3 +93,13 @@ evalBtn.addEventListener("click", () => {
         update_display();
     }
 });
+
+const clearButton = document.querySelector("#clear");
+clearButton.addEventListener("click", () => {
+    previousNumber = "";
+    currentNumber = "";
+    operation = "";
+    repeatOperation = "";
+    repeatNumber = "";
+    update_display();
+});

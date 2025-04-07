@@ -25,3 +25,20 @@ function evaluate(firstNumber, secondNumber, operator){
 
     return operations[operator](firstNumber, secondNumber);
 }
+
+const displayCurrent = document.querySelector("#display-current");
+
+function update_display(){
+    displayCurrent.textContent = previousNumber + operation + currentNumber;
+}
+
+let currentNumber = "", previousNumber = "", operation = "";
+
+const numButtons = document.querySelectorAll(".number-btn");
+numButtons.forEach((btn)=>{
+    btn.addEventListener("click", ()=>{
+        let number = btn.id;
+        currentNumber = currentNumber === null ? number : currentNumber + number;
+        update_display();
+    });
+});

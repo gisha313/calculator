@@ -59,16 +59,31 @@ opButtons.forEach((btn)=>{
         operation = btn.id;
         currentNumber = "";
         update_display();
+
+        //reset repeat operation after new one is clicked
+        repeatNumber = "";
+        repeatOperation = "";
     });
 });
 
 
 const evalBtn = document.querySelector("#evaluate");
+// if 'equals' is pressed after an operation is done, remember the second number and operation
+// so that it can be repeated with every subsequent press of 'equals'
+// but put them into new variables so that they aren't shown
+let repeatNumber = "", repeatOperation = "";
 evalBtn.addEventListener("click", () => {
-    if (operation){
+    if (operation && currentNumber){
+        repeatNumber = currentNumber;
+        repeatOperation = operation;
+
         currentNumber = evaluate(Number(previousNumber), Number(currentNumber), operation).toString();
         previousNumber = "";
         operation = "";
+        update_display();
+    }
+    if (repeatOperation){
+        currentNumber = evaluate(Number(currentNumber), Number(repeatNumber), repeatOperation);
         update_display();
     }
 });

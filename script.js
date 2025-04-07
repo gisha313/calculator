@@ -103,3 +103,24 @@ clearButton.addEventListener("click", () => {
     repeatNumber = "";
     update_display();
 });
+
+const deleteButton = document.querySelector("#delete");
+deleteButton.addEventListener("click", () => {
+    //forget about repeat operation if the delete is clicked
+    repeatOperation = "";
+    repeatNumber = "";
+
+    //if the situation is 'num oper num' or 'num' remove last digit from number
+    if ((previousNumber && operation && currentNumber) || (!operation && currentNumber))
+        currentNumber = currentNumber.slice(0, -1);
+    //otherwise remove operation
+    else if(!currentNumber && previousNumber)
+        operation = "";
+    
+    //if after deleting we're left with a single number, make it the current number
+    if (!operation && !currentNumber){
+        currentNumber = previousNumber;
+        previousNumber = "";
+    }
+    update_display()
+});

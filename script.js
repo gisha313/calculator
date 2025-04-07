@@ -42,3 +42,22 @@ numButtons.forEach((btn)=>{
         update_display();
     });
 });
+
+const opButtons = document.querySelectorAll(".operator-btn");
+opButtons.forEach((btn)=>{
+    btn.addEventListener("click", ()=>{
+        // if there's a previous number and an operation calculate the existing expression 
+        // which should already contain a (number, operation, number)
+        if (previousNumber !== "" && operation !== ""){
+            //reset the previous to the new result
+            previousNumber = evaluate(Number(previousNumber), Number(currentNumber), operation).toString();;
+        }
+        // otherwise the previous number is set to the current
+        else previousNumber = currentNumber;
+
+        // set operation to the new one and clear current number
+        operation = btn.id;
+        currentNumber = "";
+        update_display();
+    });
+});

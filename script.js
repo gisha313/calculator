@@ -37,6 +37,12 @@ let currentNumber = "", previousNumber = "", operation = "";
 const numButtons = document.querySelectorAll(".number-btn");
 numButtons.forEach((btn)=>{
     btn.addEventListener("click", ()=>{
+        // if something's already been calculated, don't let user append digits to the result, reset it
+        if (repeatOperation) {
+            repeatNumber = "";
+            repeatOperation = "";
+            currentNumber = "";
+        }
         let number = btn.id;
         currentNumber = currentNumber === null ? number : currentNumber + number;
         update_display();

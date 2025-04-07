@@ -61,3 +61,14 @@ opButtons.forEach((btn)=>{
         update_display();
     });
 });
+
+
+const evalBtn = document.querySelector("#evaluate");
+evalBtn.addEventListener("click", () => {
+    if (operation){
+        currentNumber = evaluate(Number(previousNumber), Number(currentNumber), operation).toString();
+        previousNumber = "";
+        operation = "";
+        update_display();
+    }
+});

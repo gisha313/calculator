@@ -88,7 +88,7 @@ evalBtn.addEventListener("click", () => {
         operation = "";
         update_display();
     }
-    if (repeatOperation){
+    else if (repeatOperation){
         currentNumber = evaluate(Number(currentNumber), Number(repeatNumber), repeatOperation);
         update_display();
     }

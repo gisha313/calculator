@@ -59,7 +59,8 @@ opButtons.forEach((btn)=>{
             previousNumber = evaluate(Number(previousNumber), Number(currentNumber), operation).toString();;
         }
         // otherwise the previous number is set to the current
-        else previousNumber = currentNumber;
+        else if (currentNumber)
+            previousNumber = currentNumber;
 
         // set operation to the new one and clear current number
         operation = btn.id;

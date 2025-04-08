@@ -47,7 +47,7 @@ numButtons.forEach((btn)=>{
             currentNumber = "";
         }
         let number = btn.id;
-        currentNumber = currentNumber === null ? number : currentNumber + number;
+        currentNumber = !currentNumber ? number : currentNumber.length < 40 ? currentNumber + number : currentNumber;
         update_display();
     });
 });
@@ -62,8 +62,9 @@ opButtons.forEach((btn)=>{
             previousNumber = evaluate(Number(previousNumber), Number(currentNumber), operation);
         }
         // otherwise the previous number is set to the current
+        // conversion to number and back to string to stop overflow
         else if (currentNumber)
-            previousNumber = currentNumber;
+            previousNumber = Number(currentNumber).toString();
 
         // set operation to the new one and clear current number
         operation = btn.id;

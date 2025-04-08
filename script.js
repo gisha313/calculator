@@ -125,3 +125,9 @@ deleteButton.addEventListener("click", () => {
     }
     update_display()
 });
+
+const signButton = document.querySelector("#sign");
+signButton.addEventListener("click", () => {
+    currentNumber = (Number(currentNumber) * -1).toString();
+    update_display();
+});

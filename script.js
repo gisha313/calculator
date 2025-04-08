@@ -11,8 +11,23 @@ function mul(a, b){
 }
 
 function div(a, b){
-    if (b === 0) return "err";
+    if (b === 0){
+        divideByZero();
+        return "noooooo...";
+    }
     return a / b;
+}
+
+function divideByZero(){
+    const buttonList = document.querySelectorAll("button")
+    buttonList.forEach(btn => {
+        btn.textContent = ":(";
+        btn.style.writingMode = "vertical-rl";
+        btn.addEventListener("click", (e) => {
+            e.stopImmediatePropagation();
+            location.reload();
+        });
+    });
 }
 
 function evaluate(firstNumber, secondNumber, operator){
@@ -24,6 +39,7 @@ function evaluate(firstNumber, secondNumber, operator){
     }
 
     let result = operations[operator](firstNumber, secondNumber);
+    if (typeof result !== 'number') return result;
     return result % 1 === 0 ? result.toString() : result.toFixed(2).toString();
 }
 

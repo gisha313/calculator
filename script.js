@@ -23,7 +23,8 @@ function evaluate(firstNumber, secondNumber, operator){
         "/": div,
     }
 
-    return operations[operator](firstNumber, secondNumber);
+    let result = operations[operator](firstNumber, secondNumber);
+    return result % 1 === 0 ? result.toString() : result.toFixed(2).toString();
 }
 
 const displayCurrent = document.querySelector("#display-current");
@@ -58,7 +59,7 @@ opButtons.forEach((btn)=>{
         // which should already contain a (number, operation, number)
         if (previousNumber && operation && currentNumber){
             //reset the previous to the new result
-            previousNumber = evaluate(Number(previousNumber), Number(currentNumber), operation).toString();;
+            previousNumber = evaluate(Number(previousNumber), Number(currentNumber), operation);
         }
         // otherwise the previous number is set to the current
         else if (currentNumber)
@@ -86,7 +87,7 @@ evalBtn.addEventListener("click", () => {
         repeatNumber = currentNumber;
         repeatOperation = operation;
 
-        currentNumber = evaluate(Number(previousNumber), Number(currentNumber), operation).toString();
+        currentNumber = evaluate(Number(previousNumber), Number(currentNumber), operation);
         previousNumber = "";
         operation = "";
         update_display();

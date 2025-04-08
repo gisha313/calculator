@@ -74,6 +74,8 @@ opButtons.forEach((btn)=>{
         //reset repeat operation after new one is clicked
         repeatNumber = "";
         repeatOperation = "";
+
+        decimalFlag = false;
     });
 });
 
@@ -97,6 +99,7 @@ evalBtn.addEventListener("click", () => {
         currentNumber = evaluate(Number(currentNumber), Number(repeatNumber), repeatOperation);
         update_display();
     }
+    decimalFlag = false;
 });
 
 const clearButton = document.querySelector("#clear");
@@ -106,6 +109,7 @@ clearButton.addEventListener("click", () => {
     operation = "";
     repeatOperation = "";
     repeatNumber = "";
+    decimalFlag = false;
     update_display();
 });
 
@@ -116,8 +120,12 @@ deleteButton.addEventListener("click", () => {
     repeatNumber = "";
 
     //if the situation is 'num oper num' or 'num' remove last digit from number
-    if ((previousNumber && operation && currentNumber) || (!operation && currentNumber))
+    if ((previousNumber && operation && currentNumber) || (!operation && currentNumber)){
+        if (currentNumber[currentNumber.length - 1] === ".")
+            decimalFlag = false;
         currentNumber = currentNumber.slice(0, -1);
+    }
+        
     //otherwise remove operation
     else if(!currentNumber && previousNumber)
         operation = "";
@@ -134,4 +142,14 @@ const signButton = document.querySelector("#sign");
 signButton.addEventListener("click", () => {
     currentNumber = (Number(currentNumber) * -1).toString();
     update_display();
+});
+
+const decimalButton = document.querySelector("#decimal")
+let decimalFlag = false;
+decimalButton.addEventListener("click", () => {
+    if (!decimalFlag) {
+        currentNumber += ".";
+        decimalFlag = true;
+        update_display();
+    }
 });

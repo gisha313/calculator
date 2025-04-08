@@ -54,7 +54,7 @@ opButtons.forEach((btn)=>{
     btn.addEventListener("click", ()=>{
         // if there's a previous number and an operation calculate the existing expression 
         // which should already contain a (number, operation, number)
-        if (previousNumber !== "" && operation !== ""){
+        if (previousNumber && operation && currentNumber){
             //reset the previous to the new result
             previousNumber = evaluate(Number(previousNumber), Number(currentNumber), operation).toString();;
         }

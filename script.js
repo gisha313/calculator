@@ -29,7 +29,9 @@ function evaluate(firstNumber, secondNumber, operator){
 const displayCurrent = document.querySelector("#display-current");
 
 function update_display(){
-    displayCurrent.textContent = previousNumber + operation + currentNumber;
+    if (Number(currentNumber) < 0 && operation)
+        displayCurrent.textContent = previousNumber + operation + "(" + currentNumber + ")";
+    else displayCurrent.textContent = previousNumber + operation + currentNumber;
 }
 
 let currentNumber = "", previousNumber = "", operation = "";

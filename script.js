@@ -63,7 +63,7 @@ numButtons.forEach((btn)=>{
             currentNumber = "";
         }
         let number = btn.id;
-        currentNumber = !currentNumber ? number : currentNumber.length < 40 ? currentNumber + number : currentNumber;
+        currentNumber = !currentNumber ? number : currentNumber.length < (44 - previousNumber.length) ? currentNumber + number : currentNumber;
         update_display();
     });
 });

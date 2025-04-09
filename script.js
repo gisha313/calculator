@@ -71,33 +71,35 @@ numButtons.forEach((btn)=>{
 const opButtons = document.querySelectorAll(".operator-btn");
 opButtons.forEach((btn)=>{
     btn.addEventListener("click", ()=>{
-        const OPERATIONS = {
-            "plus": "+",
-            "minus": "-",
-            "times": "*",
-            "divide": "/"
+        if (currentNumber || previousNumber){
+            const OPERATIONS = {
+                "plus": "+",
+                "minus": "-",
+                "times": "*",
+                "divide": "/"
+            }
+            // if there's a previous number and an operation calculate the existing expression 
+            // which should already contain a (number, operation, number)
+            if (previousNumber && operation && currentNumber){
+                //reset the previous to the new result
+                previousNumber = evaluate(Number(previousNumber), Number(currentNumber), operation);
+            }
+            // otherwise the previous number is set to the current
+            // conversion to number and back to string to stop overflow
+            else if (currentNumber)
+                previousNumber = Number(currentNumber).toString();
+    
+            // set operation to the new one and clear current number
+            operation = OPERATIONS[btn.id];
+            currentNumber = "";
+            update_display();
+    
+            //reset repeat operation after new one is clicked
+            repeatNumber = "";
+            repeatOperation = "";
+    
+            decimalFlag = false;
         }
-        // if there's a previous number and an operation calculate the existing expression 
-        // which should already contain a (number, operation, number)
-        if (previousNumber && operation && currentNumber){
-            //reset the previous to the new result
-            previousNumber = evaluate(Number(previousNumber), Number(currentNumber), operation);
-        }
-        // otherwise the previous number is set to the current
-        // conversion to number and back to string to stop overflow
-        else if (currentNumber)
-            previousNumber = Number(currentNumber).toString();
-
-        // set operation to the new one and clear current number
-        operation = OPERATIONS[btn.id];
-        currentNumber = "";
-        update_display();
-
-        //reset repeat operation after new one is clicked
-        repeatNumber = "";
-        repeatOperation = "";
-
-        decimalFlag = false;
     });
 });
 

@@ -173,6 +173,11 @@ signButton.addEventListener("click", () => {
 const decimalButton = document.querySelector("#decimal")
 let decimalFlag = false;
 decimalButton.addEventListener("click", () => {
+    if (repeatOperation) {
+        repeatNumber = "";
+        repeatOperation = "";
+        currentNumber = "";
+    }
     if (!decimalFlag) {
         currentNumber += ".";
         decimalFlag = true;

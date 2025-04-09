@@ -164,7 +164,7 @@ deleteButton.addEventListener("click", () => {
 
 const signButton = document.querySelector("#sign");
 signButton.addEventListener("click", () => {
-    if (currentNumber || previousNumber){
+    if (currentNumber){
         currentNumber = (Number(currentNumber) * -1).toString();
         update_display();
     }

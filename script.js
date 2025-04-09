@@ -62,7 +62,7 @@ numButtons.forEach((btn)=>{
             repeatOperation = "";
             currentNumber = "";
         }
-        let number = btn.id;
+        let number = btn.id.slice(-1);
         currentNumber = !currentNumber ? number : currentNumber.length < (44 - previousNumber.length) ? currentNumber + number : currentNumber;
         update_display();
     });
@@ -71,6 +71,12 @@ numButtons.forEach((btn)=>{
 const opButtons = document.querySelectorAll(".operator-btn");
 opButtons.forEach((btn)=>{
     btn.addEventListener("click", ()=>{
+        const OPERATIONS = {
+            "plus": "+",
+            "minus": "-",
+            "times": "*",
+            "divide": "/"
+        }
         // if there's a previous number and an operation calculate the existing expression 
         // which should already contain a (number, operation, number)
         if (previousNumber && operation && currentNumber){
@@ -83,7 +89,7 @@ opButtons.forEach((btn)=>{
             previousNumber = Number(currentNumber).toString();
 
         // set operation to the new one and clear current number
-        operation = btn.id;
+        operation = OPERATIONS[btn.id];
         currentNumber = "";
         update_display();
 
@@ -96,7 +102,7 @@ opButtons.forEach((btn)=>{
 });
 
 
-const evalBtn = document.querySelector("#evaluate");
+const evalBtn = document.querySelector("#equals");
 // if 'equals' is pressed after an operation is done, remember the second number and operation
 // so that it can be repeated with every subsequent press of 'equals'
 // but put them into new variables so that they aren't shown
@@ -168,4 +174,26 @@ decimalButton.addEventListener("click", () => {
         decimalFlag = true;
         update_display();
     }
+});
+
+const DIGITS = "0123456789".split("");
+const SPECIAL = {
+    "+": "plus",
+    "-": "minus",
+    "*": "times",
+    "/": "divide",
+    "=": "equals",
+    "Enter": "equals",
+    ".": "decimal",
+    "c": "clear",
+    "Delete": "clear",
+    "Backspace": "delete",
+}
+
+document.addEventListener("keydown", (e) => {
+    const keyName = e.key;
+    if (DIGITS.includes(keyName))
+        document.querySelector(`#num${keyName}`).click();
+    else if (keyName in SPECIAL)
+        document.querySelector(`#${SPECIAL[keyName]}`).click();
 });

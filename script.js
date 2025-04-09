@@ -164,8 +164,10 @@ deleteButton.addEventListener("click", () => {
 
 const signButton = document.querySelector("#sign");
 signButton.addEventListener("click", () => {
-    currentNumber = (Number(currentNumber) * -1).toString();
-    update_display();
+    if (currentNumber || previousNumber){
+        currentNumber = (Number(currentNumber) * -1).toString();
+        update_display();
+    }
 });
 
 const decimalButton = document.querySelector("#decimal")
